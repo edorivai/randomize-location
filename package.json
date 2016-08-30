@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/edorivai/randomize-location.git"
   },
-  "author": "Edo Rivai, Alexander Tesfamichael",
+  "author": "Edo Rivai <edo.rivai@gmail.com>, Alexander Tesfamichael <alex.tesfamichael@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/edorivai/randomize-location/issues"
