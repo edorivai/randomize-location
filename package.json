@@ -4,6 +4,7 @@
   "description": "Randomize a lat,long location given a bounding radius",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/edorivai/randomize-location/issues"
   },
-  "homepage": "https://github.com/edorivai/randomize-location#readme"
+  "homepage": "https://github.com/edorivai/randomize-location#readme",
+  "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb-base": "^5.0.3",
+    "eslint-plugin-import": "^1.14.0"
+  }
 }
