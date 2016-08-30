@@ -1,12 +1,12 @@
 /**
  * Randomizes a location within the specified randomization radius.
  * @param {Object} options
- * @param {number} options.lat The latitude of the location that is to be randomized
- * @param {number} options.long The longitude of the location that is to be randomized
- * @param {number} options.r The radius in meters within which the randomized location will be generated.
- * @param {number=} options.u The random variable determines the distance from the original location (falls back to Math.random)
- * @param {number=} options.v The random variable that determines the angle relative to the location (falls back to Math.random)
- * @returns {{lat: Number, long: Number}}
+ * @param {number} options.lat - The latitude of the location that is to be randomized
+ * @param {number} options.long - The longitude of the location that is to be randomized
+ * @param {number} options.r - The radius in meters within which the randomized location will be generated.
+ * @param {number} [options.u=Math.random()] - The random variable determines the distance from the original location
+ * @param {number} [options.v=Math.random()] - The random variable that determines the angle relative to the location
+ * @returns {Object} object with randomized lat and long
  */
 function randomizeLocation(options) {
 	options = options || {};
