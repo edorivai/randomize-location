@@ -16,7 +16,7 @@ function randomizeLocation(options) {
 	if (typeof options.long !== 'number') {
 		throw new Error('Invalid longitude');
 	}
-	
+
 	var r = (options.r || 100) / 111300 // Defaults to 100 meters
 		, u = options.u || Math.random()
 		, v = options.v || Math.random()
@@ -25,7 +25,7 @@ function randomizeLocation(options) {
 		, x = w * Math.cos(t)
 		, y1 = w * Math.sin(t)
 		, x1 = x / Math.cos(options.lat);
-	
+
 	return { lat: options.lat + y1, long: options.long + x1 };
 }
 
