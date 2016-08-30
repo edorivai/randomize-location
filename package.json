@@ -1,6 +1,6 @@
 {
   "name": "randomize-location",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Randomize a lat,long location given a bounding radius",
   "main": "index.js",
   "scripts": {
