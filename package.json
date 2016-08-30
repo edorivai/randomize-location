@@ -1,0 +1,19 @@
+{
+  "name": "randomize-location",
+  "version": "1.0.0",
+  "description": "Randomize a lat,long location given a bounding radius",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edorivai/randomize-location.git"
+  },
+  "author": "Edo Rivai, Alexander Tesfamichael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edorivai/randomize-location/issues"
+  },
+  "homepage": "https://github.com/edorivai/randomize-location#readme"
+}
