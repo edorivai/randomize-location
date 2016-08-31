@@ -15,3 +15,7 @@ npm install --save randomize-location
 
 ## acknowledgements
 Based on http://gis.stackexchange.com/a/131584
+
+## license
+ISC
+
