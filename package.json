@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test --recursive"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
   "devDependencies": {
     "eslint": "^3.4.0",
     "eslint-config-airbnb-base": "^5.0.3",
-    "eslint-plugin-import": "^1.14.0"
+    "eslint-plugin-import": "^1.14.0",
+    "mocha": "^3.0.2",
+    "should": "^11.1.0"
+  },
+  "dependencies": {
+    "object-assign": "^4.1.0"
   }
 }

@@ -1,3 +1,5 @@
+const assign = require('object-assign');
+
 /**
  * Randomizes a location within the specified randomization radius.
  * @param {Object} options
@@ -14,27 +16,31 @@
  * @returns {Object} object with randomized lat and long
  */
 function randomizeLocation(options) {
-	var opts = {};
-	if (options && typeof options === 'object') {
-		opts = JSON.parse(JSON.stringify(options));
+	var opts = assign({}, options, {
+		radius: defaultNumber(options.radius, 100),
+		spread: defaultNumber(options.spread, Math.random()),
+		angle: defaultNumber(options.angle, Math.random())
+	});
+	
+	if (typeof opts.lat !== 'number') {
+		throw new Error('Invalid latitude, expecting a number, got ' + (typeof opts.lat));
 	}
-	if (typeof options.lat !== 'number') {
-		throw new Error('Invalid latitude');
-	}
-	if (typeof options.long !== 'number') {
-		throw new Error('Invalid longitude');
+	if (typeof opts.long !== 'number') {
+		throw new Error('Invalid longitude, expecting a number, got ' + (typeof opts.long));
 	}
 
-	var radius = (opts.radius || 100) / 111300; // Defaults to 100 meters
-	var spread = opts.spread || Math.random();
-	var angle = opts.angle || Math.random();
-	var	w = radius * Math.sqrt(spread);
-	var rAngle = 2 * Math.PI * angle;
+	var	w = (opts.radius / 111300) * Math.sqrt(opts.spread);
+	var rAngle = 2 * Math.PI * opts.angle;
 	var x = w * Math.cos(rAngle);
 	var ryOffset = w * Math.sin(rAngle);
 	var rxOffset = x / Math.cos(opts.lat);
 
 	return { lat: opts.lat + ryOffset, long: opts.long + rxOffset };
+}
+
+// Returns the number if a numerical value has been passed
+function defaultNumber(value, defaultValue) {
+	return typeof value === 'number' ? value : defaultValue;
 }
 
 module.exports = randomizeLocation;
