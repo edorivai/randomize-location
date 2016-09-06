@@ -4,7 +4,7 @@
   "description": "Randomize a lat,long location given a bounding radius",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src/",
+    "lint": "eslint src/ test/",
     "test": "mocha test --recursive"
   },
   "repository": {
