@@ -1,21 +1,29 @@
-const should = require('should');
+const test = require('ava');
+const randomizeLocation = require('../src/index');
 
-const randomizeLocation = require('../src');
-
-describe('#randomizeLocation', function() {
-	it('should not accept non numerical values for lat/long input', () => {
-		should.throws(() => randomizeLocation(), Error);
-		should.throws(() => randomizeLocation({lat: 0}));
-		should.throws(() => randomizeLocation({long: 0}));
-		should.throws(() => randomizeLocation({lat: '0', long: 0}));
-		should.throws(() => randomizeLocation({lat: 0, long: '0'}));
-	});
-	
-	it('should not alter the lat/long if a radius of 0 has been defined', () => {
-		randomizeLocation({lat: 10, long: 20, radius: 0}).should.eql({lat: 10, long: 20});
-	});
-	
-	it('should not alter the lat/long for a spread value of 0', () => {
-		randomizeLocation({lat: 10, long: 20, spread: 0}).should.eql({lat: 10, long: 20});
-	});
+test('should throw if lat or long is not a number', t => {
+	t.throws(() => { randomizeLocation({ lat: 4, long: '52' }); });
+	t.throws(() => { randomizeLocation({ lat: '4', long: 52 }); });
 });
+
+test('should throw if lat or long is omitted', t => {
+	t.throws(() => { randomizeLocation({}); });
+	t.throws(() => { randomizeLocation({ lat: 4.1415926 }); });
+	t.throws(() => { randomizeLocation({ long: 4.1415926 }); });
+	/* alternative */
+	// t.plan(3);
+	// const badInputs = [{}, { lat: 4 }, { long: 52 }];
+	// badInputs.forEach(badInput => {
+	// 	t.throws(() => { randomizeLocation(badInput); });
+	// });
+});
+
+test('should not alter the lat/long if a radius of 0 has been defined', t => {
+	t.deepEqual(
+		randomizeLocation({ lat: 10, long: 20, radius: 0 }),
+		{ lat: 10, long: 20 }
+	);
+});
+
+test.todo('should add a random offset');
+test.todo('should add a random offset with a minimal offset');
