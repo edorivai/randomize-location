@@ -36,7 +36,7 @@ function randomizeLocation(options) {
 		throw new Error('Invalid longitude, expecting a number, got ' + (typeof opts.long));
 	}
 
-	var minOffsetFactor = opts.minOffset / opts.radius;
+	var minOffsetFactor = opts.minOffset / opts.radius || 0; // if radius is zero, mof should be zero
 	var minRadius = (opts.radius * (1 - minOffsetFactor)) + opts.minOffset; // ensure min offset
 	var	w = (minRadius / 111300) * Math.sqrt(opts.rand1); // random radius offset
 	var angle = 2 * Math.PI * opts.rand2; // random, circle angle
