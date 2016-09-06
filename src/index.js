@@ -26,7 +26,7 @@ function randomizeLocation(options) {
 		minOffset: defaultNumber(options.minOffset, 0),
 		radius: defaultNumber(options.radius, 100),
 		rand1: defaultNumber(options.rand1, Math.random()),
-		rand2: defaultNumber(options.rand2, Math.random())
+		rand2: defaultNumber(options.rand2, Math.random()),
 	});
 
 	if (typeof opts.lat !== 'number') {
