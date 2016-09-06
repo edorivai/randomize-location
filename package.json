@@ -1,7 +1,7 @@
 {
   "name": "randomize-location",
   "version": "0.1.0",
-  "description": "Randomize a lat,long location given a bounding radius",
+  "description": "Randomize a set of coordinates",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/ test/",
