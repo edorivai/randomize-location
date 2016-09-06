@@ -1,4 +1,4 @@
-/* eslint-disable-vars-on-top */
+/* eslint-disable vars-on-top */
 const assign = require('object-assign');
 
 /**

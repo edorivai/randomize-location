@@ -4,5 +4,5 @@ rules:
     - error
     - tab
   import/no-extraneous-dependencies: off
-  no-var: warn
-  vars-on-top: warn
+  no-var: off
+  prefer-template: off
