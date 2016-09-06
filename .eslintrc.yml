@@ -3,5 +3,6 @@ rules:
   indent:
     - error
     - tab
+  import/no-extraneous-dependencies: off
   no-var: warn
   vars-on-top: warn
