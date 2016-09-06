@@ -17,6 +17,10 @@
     "url": "https://github.com/edorivai/randomize-location/issues"
   },
   "homepage": "https://github.com/edorivai/randomize-location#readme",
+  "files": [
+    "src/",
+    "test/"
+  ],
   "devDependencies": {
     "eslint": "^3.4.0",
     "eslint-config-airbnb-base": "^5.0.3",
