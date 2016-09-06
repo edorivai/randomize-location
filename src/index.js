@@ -1,3 +1,4 @@
+/* eslint-disable-vars-on-top */
 const assign = require('object-assign');
 
 /**
@@ -6,11 +7,9 @@ const assign = require('object-assign');
  * @param {number} options.lat - The latitude of the location that is to be randomized
  * @param {number} options.long - The longitude of the location that is to be randomized
  * @param {number} options.radius - The radius in meters within which the randomized location
- *   will be generated.
- * @param {number} [options.spread=Math.random()] - The random variable determines the distance
- *   from the original location
- * @param {number} [options.angle=Math.random()] - The random variable that determines
- *   the angle relative to the location
+ *   will be generated
+ * @param {number} [options.rand1=Math.random()] - ?
+ * @param {number} [options.rand2=Math.random()] - ?
  * @param {number} options.minOffset - The minimal distance the randomized point
  *   should be from the passed latitude and longitude
  * @returns {Object} object with randomized lat and long
@@ -18,24 +17,27 @@ const assign = require('object-assign');
 function randomizeLocation(options) {
 	var opts = assign({}, options, {
 		radius: defaultNumber(options.radius, 100),
-		spread: defaultNumber(options.spread, Math.random()),
-		angle: defaultNumber(options.angle, Math.random())
+		rand1: defaultNumber(options.rand1, Math.random()),
+		rand2: defaultNumber(options.rand2, Math.random())
 	});
-	
+
 	if (typeof opts.lat !== 'number') {
-		throw new Error('Invalid latitude, expecting a number, got ' + (typeof opts.lat));
+		throw new Error('Invalid latitude, expecting a number, got ' + String(typeof opts.lat));
 	}
 	if (typeof opts.long !== 'number') {
-		throw new Error('Invalid longitude, expecting a number, got ' + (typeof opts.long));
+		throw new Error('Invalid longitude, expecting a number, got ' + String(typeof opts.long));
 	}
+	opts.minOffset = opts.minOffset || 0;
 
-	var	w = (opts.radius / 111300) * Math.sqrt(opts.spread);
-	var rAngle = 2 * Math.PI * opts.angle;
-	var x = w * Math.cos(rAngle);
-	var ryOffset = w * Math.sin(rAngle);
-	var rxOffset = x / Math.cos(opts.lat);
+	var minOffsetFactor = opts.minOffset / opts.radius;
+	var minRadius = (opts.radius * (1 - minOffsetFactor)) + opts.minOffset; // ensure min offset
+	var	w = (minRadius / 111300) * Math.sqrt(opts.rand1); // random radius offset
+	var angle = 2 * Math.PI * opts.rand2; // random, circle angle
+	var uncompXOffset = w * Math.cos(angle); // long offset
+	var yOffset = w * Math.sin(angle); // lat offset
+	var xOffset = uncompXOffset / Math.cos(opts.lat); // compensate for longitude shrinkage
 
-	return { lat: opts.lat + ryOffset, long: opts.long + rxOffset };
+	return { lat: opts.lat + yOffset, long: opts.long + xOffset };
 }
 
 // Returns the number if a numerical value has been passed
