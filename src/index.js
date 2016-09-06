@@ -30,10 +30,10 @@ function randomizeLocation(options) {
 	});
 
 	if (typeof opts.lat !== 'number') {
-		throw new Error('Invalid latitude, expecting a number, got ' + String(typeof opts.lat));
+		throw new Error('Invalid latitude, expecting a number, got ' + (typeof opts.lat));
 	}
 	if (typeof opts.long !== 'number') {
-		throw new Error('Invalid longitude, expecting a number, got ' + String(typeof opts.long));
+		throw new Error('Invalid longitude, expecting a number, got ' + (typeof opts.long));
 	}
 
 	var minOffsetFactor = opts.minOffset / opts.radius;
