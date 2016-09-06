@@ -23,6 +23,7 @@ function defaultNumber(value, defaultValue) {
  */
 function randomizeLocation(options) {
 	var opts = assign({}, options, {
+		minOffset: defaultNumber(options.minOffset, 0),
 		radius: defaultNumber(options.radius, 100),
 		rand1: defaultNumber(options.rand1, Math.random()),
 		rand2: defaultNumber(options.rand2, Math.random())
@@ -34,7 +35,6 @@ function randomizeLocation(options) {
 	if (typeof opts.long !== 'number') {
 		throw new Error('Invalid longitude, expecting a number, got ' + String(typeof opts.long));
 	}
-	opts.minOffset = opts.minOffset || 0;
 
 	var minOffsetFactor = opts.minOffset / opts.radius;
 	var minRadius = (opts.radius * (1 - minOffsetFactor)) + opts.minOffset; // ensure min offset
