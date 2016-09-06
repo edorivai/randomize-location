@@ -1,6 +1,13 @@
 /* eslint-disable vars-on-top */
 const assign = require('object-assign');
 
+/*
+ * Returns the number if a numerical value has been passed
+ */
+function defaultNumber(value, defaultValue) {
+	return typeof value === 'number' ? value : defaultValue;
+}
+
 /**
  * Randomizes a location within the specified randomization radius.
  * @param {Object} options
@@ -38,11 +45,6 @@ function randomizeLocation(options) {
 	var xOffset = uncompXOffset / Math.cos(opts.lat); // compensate for longitude shrinkage
 
 	return { lat: opts.lat + yOffset, long: opts.long + xOffset };
-}
-
-// Returns the number if a numerical value has been passed
-function defaultNumber(value, defaultValue) {
-	return typeof value === 'number' ? value : defaultValue;
 }
 
 module.exports = randomizeLocation;
