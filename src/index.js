@@ -1,5 +1,4 @@
 /* eslint-disable vars-on-top */
-const assign = require('object-assign');
 
 /*
  * Returns the number if a numerical value has been passed
@@ -22,29 +21,27 @@ function defaultNumber(value, defaultValue) {
  * @returns {Object} object with randomized lat and long
  */
 function randomizeLocation(options) {
-	var opts = assign({}, options, {
-		minOffset: defaultNumber(options.minOffset, 0),
-		radius: defaultNumber(options.radius, 100),
-		rand1: defaultNumber(options.rand1, Math.random()),
-		rand2: defaultNumber(options.rand2, Math.random()),
-	});
+	var minOffset = defaultNumber(options.minOffset, 0);
+	var radius = defaultNumber(options.radius, 100);
+	var rand1 = defaultNumber(options.rand1, Math.random());
+	var rand2 = defaultNumber(options.rand2, Math.random());
 
-	if (typeof opts.lat !== 'number') {
-		throw new Error('Invalid latitude, expecting a number, got ' + (typeof opts.lat));
+	if (typeof options.lat !== 'number') {
+		throw new Error('Invalid latitude, expecting a number, got ' + (typeof options.lat));
 	}
-	if (typeof opts.long !== 'number') {
-		throw new Error('Invalid longitude, expecting a number, got ' + (typeof opts.long));
+	if (typeof options.long !== 'number') {
+		throw new Error('Invalid longitude, expecting a number, got ' + (typeof options.long));
 	}
 
-	var minOffsetFactor = opts.minOffset / opts.radius || 0; // if radius is zero, mof should be zero
-	var minRadius = (opts.radius * (1 - minOffsetFactor)) + opts.minOffset; // ensure min offset
-	var	w = (minRadius / 111300) * Math.sqrt(opts.rand1); // random radius offset
-	var angle = 2 * Math.PI * opts.rand2; // random, circle angle
+	var minOffsetFactor = minOffset / radius || 0; // if radius is zero, mof should be zero
+	var minRadius = (radius * (1 - minOffsetFactor)) + minOffset; // ensure min offset
+	var	w = (minRadius / 111300) * Math.sqrt(rand1); // random radius offset
+	var angle = 2 * Math.PI * rand2; // random, circle angle
 	var uncompXOffset = w * Math.cos(angle); // long offset
 	var yOffset = w * Math.sin(angle); // lat offset
-	var xOffset = uncompXOffset / Math.cos(opts.lat); // compensate for longitude shrinkage
+	var xOffset = uncompXOffset / Math.cos(options.lat); // compensate for longitude shrinkage
 
-	return { lat: opts.lat + yOffset, long: opts.long + xOffset };
+	return { lat: options.lat + yOffset, long: options.long + xOffset };
 }
 
 module.exports = randomizeLocation;
