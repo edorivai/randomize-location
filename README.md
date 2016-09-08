@@ -9,9 +9,9 @@ npm install --save randomize-location
 
 ## Todo
 - add documentation
-- add a minimum offset to the passed coordinates
-- add unit-tests
+- add more unit-tests
 - specify supported engines
+- add ci badge
 
 ## Acknowledgements
 Based on http://gis.stackexchange.com/a/131584
