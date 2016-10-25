@@ -1,6 +1,6 @@
 {
   "name": "randomize-location",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Randomize a set of coordinates",
   "main": "src/index.js",
   "scripts": {
